@@ -1,8 +1,6 @@
 """Flask Application Factory
-
 This module contains the Flask application factory pattern implementation.
 """
-
 import os
 from flask import Flask
 
@@ -15,7 +13,6 @@ from flask import Flask
 # Import middleware (these will be implemented later)
 # from .middleware.security_headers import setup_security_headers
 # from .middleware.error_handlers import register_error_handlers
-
 
 def create_app(config_name=None):
     """Create and configure Flask application instance.
@@ -49,9 +46,25 @@ def create_app(config_name=None):
     # setup_security_headers(app)
     # register_error_handlers(app)
     
-    # Register blueprints (API routes will be added later)
-    # from .api import api_bp
-    # app.register_blueprint(api_bp, url_prefix='/api')
+    # Register blueprints
+    from .blueprints.auth import auth_bp
+    from .blueprints.organizations import organizations_bp
+    
+    app.register_blueprint(auth_bp)
+    app.register_blueprint(organizations_bp, url_prefix='/api/organizations')
+    
+    # TODO: Register remaining blueprints when they are created
+    # from .blueprints.users import users_bp
+    # from .blueprints.projects import projects_bp
+    # from .blueprints.documents import documents_bp
+    # from .blueprints.questions import questions_bp
+    # from .blueprints.responses import responses_bp
+    # 
+    # app.register_blueprint(users_bp)
+    # app.register_blueprint(projects_bp)
+    # app.register_blueprint(documents_bp)
+    # app.register_blueprint(questions_bp)
+    # app.register_blueprint(responses_bp)
     
     # Basic health check route
     @app.route('/health')
@@ -73,7 +86,6 @@ def create_app(config_name=None):
         }
     
     return app
-
 
 if __name__ == '__main__':
     # Development server
