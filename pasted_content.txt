@@ -1,0 +1,65 @@
+*objetivo* Desenvolva, com base nas instruções abaixo, tanto o sistema quanto a documentação completa para uma plataforma SaaS de automação de respostas a RFPs, conforme os requisitos descritos. Utilize boas práticas de engenharia de software, com foco em escalabilidade, segurança e experiência do usuário final.
+
+### 1. Visão Geral e Justificativa
+
+- Apresente brevemente o propósito do sistema.
+- Destaque os diferenciais do uso da Google Gemini API, Gemma 3n e Azure EntraID.
+- Explique os principais casos de uso, público-alvo e benefícios organizacionais.
+
+### 2. Especificação de Arquitetura
+
+- Detailhe a arquitetura de alto nível (backend, frontend, AI/ML, base de dados, autenticação).
+- Descreva fluxos de autenticação SSO com Azure EntraID.
+- Indique, em tópicos, cada integração AI (Gemini API como primária, Gemma 3n como fallback/contextual).
+- Inclua um diagrama de componentes e um de fluxo do usuário (em Markdown pseudo-code ou descrição textual caso imagens não possam ser usadas).
+
+### 3. Modelagem de Dados
+
+- Liste as principais entidades, atributos, relacionamentos e regras (Organização, Usuário, Projeto, Documento, Pergunta, Resposta, Indexação, Papéis).
+- Descreva as constraints essenciais e sugestões de indexes em bancos SQL.
+
+### 4. Stack Tecnológica e Justificativas
+
+- Monte uma tabela descrevendo cada camada e a tecnologia empregada.
+- Argumente o porquê das escolhas feitas para cada stack (por exemplo: razões para Next.js, PostgreSQL, etc.).
+
+### 5. Desenvolvimento de Funcionalidades
+
+- Escreva exemplos (excerpts) de código para endpoints críticos (REST API) para:
+  - Login via EntraID.
+  - Upload de documentos.
+  - Extração de perguntas (chamada à Gemini API).
+  - Geração de respostas (Gemini/Gemma 3n).
+- Explique como implementar fallback de modelos de IA.
+- Modele o front-end de um chat interativo para geração e edição de respostas.
+
+### 6. Configuração, Deploy e Segurança
+
+- Forneça um checklist de variáveis de ambiente obrigatórias.
+- Explique a configuração inicial do Azure EntraID, Gemini API e Gemma 3n.
+- Descreva o pipeline de CI/CD, políticas de segredos e práticas recomendadas de segurança (MFA, SSO, log auditing, etc.).
+
+### 7. Testes e Qualidade
+
+- Modele estratégias de testes automatizados: unitários, integração, mocks para external APIs.
+- Liste comandos básicos para rodar a suíte de testes e validação do código.
+
+### 8. Documentação do Usuário/Desenvolvedor
+
+- Gere um README inicial detalhado com:
+  - Sumário do sistema.
+  - Passos para instalação local.
+  - Instruções para deploy em produção (Vercel/Node.js).
+- Explique como contribuir e abrir issues/PRs.
+- Apresente exemplos de uso dos principais endpoints.
+
+### 9. Licenciamento
+
+- Oriente para uso do MIT License.
+- Explique em uma seção resumida os direitos e obrigações ao usar e contribuir.
+
+### Orientações para Geração do Sistema
+
+- Código limpo, comentado e padronizado.
+- Componentes/arquivos organizados conforme a estrutura de diretórios apresentada (“auto_rfp_gemini/…”).
+- Todo exemplo de código e explicação deve estar em português técnico.
