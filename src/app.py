@@ -5,14 +5,14 @@ import os
 from flask import Flask
 
 # Import extensions (these will be implemented later)
-# from .extensions.db import db
-# from .extensions.migrate import migrate
-# from .extensions.jwt import jwt
-# from .extensions.cors import cors
+from .extensions.db import db
+from .extensions.migrate import migrate
+from .extensions.jwt import jwt
+from .extensions.cors import cors
 
 # Import middleware (these will be implemented later)
-# from .middleware.security_headers import setup_security_headers
-# from .middleware.error_handlers import register_error_handlers
+from .middleware.security_headers import setup_security_headers
+from .middleware.error_handlers import register_error_handlers
 
 def create_app(config_name=None):
     """Create and configure Flask application instance.
@@ -37,14 +37,14 @@ def create_app(config_name=None):
     app.config['DEBUG'] = config_name == 'development'
     
     # Initialize extensions
-    # db.init_app(app)
-    # migrate.init_app(app, db)
-    # jwt.init_app(app)
-    # cors.init_app(app)
+    db.init_app(app)
+    migrate.init_app(app, db)
+    jwt.init_app(app)
+    cors.init_app(app)
     
     # Setup middleware
-    # setup_security_headers(app)
-    # register_error_handlers(app)
+    setup_security_headers(app)
+    register_error_handlers(app)
     
     # Register blueprints
     from .blueprints.auth import auth_bp
